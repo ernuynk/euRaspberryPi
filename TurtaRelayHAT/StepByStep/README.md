@@ -1,3 +1,3 @@
 
-StepByStep Uygulamaları
-https://www.youtube.com/watch?v=b5Xzca4InXw
+# StepByStep Uygulamaları
+# https://www.youtube.com/watch?v=b5Xzca4InXw
