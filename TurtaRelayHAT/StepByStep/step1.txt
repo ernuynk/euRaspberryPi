@@ -1,0 +1,47 @@
+
+#!/usr/bin/python
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+
+#Role pin listesi
+
+pinList = [21, 22, 23, 24]
+
+#pinList degerlerini cikis ve 1 olarak ayarla
+
+for i in pinList:
+    GPIO.setup(i, GPIO.OUT)
+    GPIO.output(i, GPIO.HIGH)
+
+#ana dongudeki gecikme
+
+Gecikme = 0.5
+
+#ana dongu
+
+try:
+  GPIO.output(21, GPIO.HIGH)
+  time.sleep(Gecikme);
+  GPIO.output(21, GPIO.LOW)
+  print "1.Role"
+  time.sleep(Gecikme);
+  GPIO.output(22, GPIO.LOW)
+  print "2.Role"
+  time.sleep(Gecikme);
+  GPIO.output(23, GPIO.LOW)
+  print "3.Role"
+  time.sleep(Gecikme);
+  GPIO.output(24, GPIO.LOW)
+  print "4.Role"
+  time.sleep(Gecikme);
+  GPIO.cleanup()
+  print "Gule gule :)"
+
+#Programi sonlandiran klavye girdisi
+except KeyboardInterrupt:
+  print "  Cikis"
+
+  #Reset GPIO Ayarlari
+  GPIO.cleanup()
