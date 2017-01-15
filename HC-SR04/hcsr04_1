@@ -1,0 +1,49 @@
+
+#-*- coding: utf-8 -*-
+
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+
+TRIG=16
+ECHO=18
+ledK=22
+ledY=32
+
+print "Mesafe Ölçüm İlerlemesi"
+
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+GPIO.setup(ledK, GPIO.OUT)
+GPIO.setuo(ledY, GPIO.OUT)
+
+while True:
+
+        GPIO.output(TRIG, False)
+        print "Sensör Hesaplaması Bekleniyor"
+        time.sleep(1)
+ 	GPIO.output(TRIG, True)
+        time.sleep(0.00001)
+        GPIO.output(TRIG, False)
+
+        while GPIO.input(ECHO) == 0:
+                pulse_start = time.time()
+
+        while GPIO.input(ECHO) == 1:
+                pulse_finish = time.time()
+
+	pulse_time = pulse_finish - pulse_start
+
+        distance = pulse_time * 17150
+        distance = round(distance, 2)
+
+        if distance > 5  and distance < 100:
+                print "Mesafe:",distance, "cm"
+		GPIO.output(ledK, False)
+		GPIO.output(ledY, True)
+		
+        else:
+                print "Mesafe Hesaplanamıyor!"
+		GPIO.output(ledK, True)
+		GPIO.output(ledY, False)
