@@ -1,3 +1,3 @@
-# euRaspberryPi
-# Raspberry Pi Uygulamaları
+# euTutorials
+# Elektronik Uygulamaları
 # www.erenuyanik.com
